@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +19,16 @@ func main() {
 func router() http.Handler {
 	r := gin.Default()
 	r.RemoveExtraSlash = true
-	r.GET("/ping", func(ctx *gin.Context) { ctx.String(200, "pong") })
+	r.GET("/ping", pong)
 	return r
+}
+
+func pong(ctx *gin.Context) {
+	for h, v := range ctx.Request.Header {
+		if strings.HasPrefix("ssl", h) {
+			log.Printf("%s: %v", h, v)
+		}
+	}
+
+	ctx.String(200, "pong")
 }
