@@ -17,5 +17,5 @@ spec:
       public: true
       authentication:
         clientCertificate:
-          verification: "optional_no_ca"
+          verification: "on"
           passCertificateToUpstream: true
