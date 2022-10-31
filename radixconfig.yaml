@@ -15,3 +15,7 @@ spec:
         - name: http
           port: 8080
       public: true
+      authentication:
+        clientCertificate:
+          verification: "optional_no_ca"
+          passCertificateToUpstream: true
