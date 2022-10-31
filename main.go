@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,10 +23,9 @@ func router() http.Handler {
 }
 
 func pong(ctx *gin.Context) {
+	log.Printf("received ping with %v headers\n", len(ctx.Request.Header))
 	for h, v := range ctx.Request.Header {
-		if strings.HasPrefix("ssl", h) {
-			log.Printf("%s: %v", h, v)
-		}
+		log.Printf("%s: %v\n", h, v)
 	}
 
 	ctx.String(200, "pong")
