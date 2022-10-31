@@ -1,0 +1,17 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: pingpong
+spec:
+  environments:
+    - name: dev
+      build:
+        from: main
+  components:
+    - name: "api"
+      src: "."
+      dockerfileName: "Dockerfile"
+      ports:
+        - name: http
+          port: 8080
+      public: true
